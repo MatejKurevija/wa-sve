@@ -14,7 +14,9 @@ const app = express(); // instanciranje aplikacije
 
 app.use(cors());
 app.use(express.json());
-
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(__dirname + '/../public/'));
+}
 const port = process.env.PORT || 3100;
 
 app.listen(port, function () {
